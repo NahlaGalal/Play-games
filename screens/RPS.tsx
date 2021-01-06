@@ -11,7 +11,10 @@ import Header from "../components/Header";
 import { Colors } from "../enums/Colors";
 import { Fonts } from "../enums/Fonts";
 
-const RPS: React.FC<{ navigation: any }> = ({ navigation }) => {
+const RPS: React.FC<{
+  navigation: any;
+  route?: { params?: { results: number[] } };
+}> = ({ navigation, route }) => {
   return (
     <View style={styles.screen}>
       <Gradient />
@@ -21,7 +24,10 @@ const RPS: React.FC<{ navigation: any }> = ({ navigation }) => {
         <View style={styles.btns}>
           <TouchableWithoutFeedback
             onPress={() =>
-              navigation.navigate("playGame2", { userChoice: "paper" })
+              navigation.navigate("playGame2", {
+                userChoice: "paper",
+                results: route?.params?.results || [0, 0, 0],
+              })
             }
           >
             <View style={styles.btnContainer}>
@@ -30,7 +36,10 @@ const RPS: React.FC<{ navigation: any }> = ({ navigation }) => {
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
             onPress={() =>
-              navigation.navigate("playGame2", { userChoice: "rock" })
+              navigation.navigate("playGame2", {
+                userChoice: "rock",
+                results: route?.params?.results || [0, 0, 0],
+              })
             }
           >
             <View style={styles.btnContainer}>
@@ -39,7 +48,10 @@ const RPS: React.FC<{ navigation: any }> = ({ navigation }) => {
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
             onPress={() =>
-              navigation.navigate("playGame2", { userChoice: "scissors" })
+              navigation.navigate("playGame2", {
+                userChoice: "scissors",
+                results: route?.params?.results || [0, 0, 0],
+              })
             }
           >
             <View style={styles.btnContainer}>
