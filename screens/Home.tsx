@@ -5,13 +5,17 @@ import Header from "../components/Header";
 import { Colors } from "../enums/Colors";
 import { Fonts } from "../enums/Fonts";
 
-const Home = () => {
+const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <Gradient />
-      <Header title="Choose a Game"/>
+      <Header title="Choose a Game" />
       <View style={styles.btnsCenter}>
-        <TouchableWithoutFeedback onPress={() => {}}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            navigation.navigate("Game1");
+          }}
+        >
           <View style={styles.btnContainer}>
             <Text style={styles.btn}>Tic-Tac-Toe</Text>
           </View>
@@ -33,7 +37,7 @@ const styles = StyleSheet.create({
   btnsCenter: {
     alignItems: "center",
     justifyContent: "center",
-    flex: 1
+    flex: 1,
   },
   btnContainer: {
     justifyContent: "center",
@@ -42,7 +46,7 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: Colors.backColor,
     borderRadius: 20,
-    marginVertical: 12
+    marginVertical: 12,
   },
   btn: {
     color: Colors.secondaryColor,
