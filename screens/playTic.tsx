@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
   playerScore: {
     fontSize: 24,
     color: Colors.secondaryColor,
+    marginTop: 16
   },
   playGround: {
     borderTopColor: Colors.secondaryColor,

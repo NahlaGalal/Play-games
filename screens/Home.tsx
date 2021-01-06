@@ -20,7 +20,7 @@ const Home: React.FC<{ navigation: any }> = ({ navigation }) => {
             <Text style={styles.btn}>Tic-Tac-Toe</Text>
           </View>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => {}}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate("Game2")}>
           <View style={styles.btnContainer}>
             <Text style={styles.btn}>Rock-Papper-Scissors</Text>
           </View>

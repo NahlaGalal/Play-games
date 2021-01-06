@@ -6,6 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./screens/Home";
 import TicTacToe from "./screens/TicTacToe";
 import playTic from "./screens/playTic";
+import RPS from "./screens/RPS";
+import playRPS from "./screens/playRPS";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +28,8 @@ export default function App() {
         <Stack.Screen name="Main screen" component={Home} />
         <Stack.Screen name="Game1" component={TicTacToe} />
         <Stack.Screen name="playGame1" component={playTic} />
+        <Stack.Screen name="Game2" component={RPS} />
+        <Stack.Screen name="playGame2" component={playRPS} />
       </Stack.Navigator>
     </NavigationContainer>
   );
