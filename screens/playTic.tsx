@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import Modal from "react-native-modal";
 import Header from "../components/Header";
@@ -26,22 +26,19 @@ const playTic: React.FC<{
   const [tieIndicator, setTieIndicator] = useState<boolean>(false);
 
   const botChoice = userChoice === "O" ? "X" : "O";
+
   const createPlayGround = () =>
     playGroundArr.map((row, i) => (
       <View style={styles.row} key={i}>
         {row.map((cell, j) =>
           cell ? (
-            <Text style={styles.square}>{cell}</Text>
+            <Text style={styles.square} key={j}>
+              {cell}
+            </Text>
           ) : (
             <TouchableWithoutFeedback
               key={j}
-              onPress={() =>
-                checkSquare(
-                  i,
-                  j,
-                  currentTurn === "player" ? userChoice : botChoice
-                )
-              }
+              onPress={() => checkSquare(i, j, userChoice)}
             >
               <Text style={styles.square}>{cell}</Text>
             </TouchableWithoutFeedback>
@@ -50,12 +47,20 @@ const playTic: React.FC<{
       </View>
     ));
 
+  useEffect(() => {
+    const winner = checkWin(playGroundArr);
+    if (!winner) {
+      if (currentTurn === "player") {
+        setCurrentTurn("bot");
+        botTurn(playGroundArr);
+      } else setCurrentTurn("player");
+    }
+  }, [playGroundArr]);
+
   const checkSquare = (i: number, j: number, check: "X" | "O") => {
     const copyArr = [...playGroundArr.map((row) => [...row])];
     copyArr[i][j] = check;
     setPlayGroundArr(copyArr);
-    const winner = checkWin(copyArr);
-    if (!winner) setCurrentTurn(currentTurn === "bot" ? "player" : "bot");
   };
 
   const checkWin = (copyArr: string[][]) => {
@@ -119,6 +124,19 @@ const playTic: React.FC<{
     ]);
     setCurrentTurn("player");
     setIsVisible(false);
+  };
+
+  const botTurn = (copyArr: any) => {
+    setTimeout(() => {
+      let cellChosen = -1;
+      while (
+        cellChosen === -1 ||
+        copyArr[Math.floor(cellChosen / 3)][cellChosen % 3]
+      ) {
+        cellChosen = Math.floor(Math.random() * 9);
+      }
+      checkSquare(Math.floor(cellChosen / 3), cellChosen % 3, botChoice);
+    }, 500);
   };
 
   return (
