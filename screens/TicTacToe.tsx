@@ -14,14 +14,14 @@ const TicTacToe: React.FC<{ navigation: any }> = ({ navigation }) => {
         <Text style={styles.chooseSide}>Choose your side</Text>
         <View style={styles.btns}>
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate("playGame1", { userChoice: "x" })}
+            onPress={() => navigation.navigate("playGame1", { userChoice: "X" })}
           >
             <View style={styles.btnContainer}>
               <Text style={styles.btn}>X</Text>
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate("playGame1", { userChoice: "o" })}
+            onPress={() => navigation.navigate("playGame1", { userChoice: "O" })}
           >
             <View style={styles.btnContainer}>
               <Text style={styles.btn}>O</Text>
